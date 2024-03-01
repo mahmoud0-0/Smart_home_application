@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_home_application/views/shared/shared_theme/shared_color.dart';
 import 'package:smart_home_application/views/shared/shared_theme/shared_fonts.dart';
@@ -69,8 +70,56 @@ class _home_pageState extends State<home_page> {
         scrollDirection: Axis.vertical,
         children: [ 
           weathercondsection(),
-          // categorysection()
-          Text('data',style: sharedfonts.primarywhitecolor,)
+          listhorizontal(),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                margin: EdgeInsets.all(10),
+                height: 200,
+                width: 200,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: sharedcolors.bluecolor
+                ),
+                child: 
+                Container(
+                  height:50 ,
+                  width: 100,
+                  margin: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(10),
+                  child: Column(
+                  crossAxisAlignment:CrossAxisAlignment.start,
+                  children: [
+                     Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Icon(Icons.wifi_1_bar_rounded,color: sharedcolors.whitecolor,size: 25)
+                          ],
+                        ),
+                    Icon(Icons.lightbulb_circle_rounded,color: sharedcolors.whitecolor,size: 35),
+                    Row(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Smart lighting ',style: sharedfonts.primarywhitecolor),
+                            Text('Living Room',style: sharedfonts.subwhite)
+                          ],
+                        )
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text('-------------------',style: sharedfonts.primarywhitecolor)
+                      ],
+                    )
+                  ],
+                ),
+                )
+              )
+            ],
+          )
         ],
       ),
     );
@@ -120,27 +169,33 @@ class _home_pageState extends State<home_page> {
             ],
           ),
         ); 
-            
-  // }
-      // Container categorysection(){
-      //     return Container(
-      //       margin: EdgeInsets.all(10),
-      //       padding: EdgeInsets.all(10),
-      //       height: 150 ,
-      //       width: 150 ,
-      //       child:
-      //       Row(
-      //         children: [
-      //          ListView.builder(
-      //         scrollDirection: Axis.horizontal,
-      //         itemCount: categories.length,
-      //         itemBuilder:(context, i) {
-      //           Text(categories[i]['name'],style: sharedfonts.primarywhitecolor);
-      //         },
-      //       ),
-      //         ],
-      //       ),
-      //     );
+        
   }
+        Container listhorizontal() { 
+          return Container(
+            child: 
+             Row(
+            children: [
+              Container(
+                margin:EdgeInsets.all(10),
+                height: 35,
+                width: 350,
+                child:ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: categories.length,
+                  itemBuilder: (context, i) {
+                    return Container(
+                      padding: EdgeInsets.all(3),
+                      width: 130,
+                      height: 50,
+                      child: Text(categories [i]['name'],style: sharedfonts.subwhite,),
+                    );
+                  },
+                ),
+              )
+            ],
+           )
+          );
+        }
   
 }
